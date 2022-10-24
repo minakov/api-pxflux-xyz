@@ -5,5 +5,6 @@ interface HTTPError extends Error {
 }
 
 interface Bindings {
+  MAGIC_SECRET_KEY: string;
   COUNTER: DurableObjectNamespace;
 }

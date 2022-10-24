@@ -1,9 +1,5 @@
-import { Router } from 'itty-router'
+import router from './routes'
 import { errorHandler } from './utils/error-handler'
-
-const router = Router()
-
-router.all('*', () => new Response('Not found', { status: 404 }))
 
 const worker: ExportedHandler<Bindings> = {
   async fetch(request, env, ctx) {

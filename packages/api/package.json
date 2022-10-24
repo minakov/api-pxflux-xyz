@@ -1,18 +1,19 @@
 {
-  "name": "api.pxflux.xyz",
+  "name": "api",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "module": "./dist/index.mjs",
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "miniflare --live-reload --debug --modules dist/index.mjs",
+    "dev": "miniflare --live-reload --debug --modules dist/index.mjs --env ../../.env",
     "dev:remote": "wrangler dev",
     "types:check": "tsc && tsc -p test/tsconfig.json",
     "deploy": "wrangler publish"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.11.0",
+    "dotenv": "^16.0.3",
     "esbuild": "^0.14.41",
     "git-rev-sync": "^3.0.2",
     "miniflare": "^2.5.0",
