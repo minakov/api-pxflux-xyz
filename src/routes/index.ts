@@ -1,17 +1,18 @@
-import { cors, postCors } from '@/middleware/cors'
-import Router, { Handler } from '@/utils/router'
+import { Router } from 'itty-router'
+import { createCors } from 'itty-cors'
 import { favicon } from './favicon'
 import { robots } from './robots'
 import { version } from './version'
 
-export type TypedHandler = Handler<Bindings>
-const r = new Router<Bindings>()
+const { preflight } = createCors()
 
-r.options('*', cors)
+const r = Router()
+
+// r.all('*', preflight)
 
 r.get('/favicon.ico', favicon)
 r.get('/robots.txt', robots)
 
-r.get('/version', version, [postCors])
+r.get('/version', version)
 
 export default r

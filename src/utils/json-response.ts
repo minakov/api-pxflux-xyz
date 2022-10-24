@@ -1,10 +1,11 @@
 export class JsonResponse extends Response {
-  constructor(body: unknown, init: ResponseInit = {}) {
-    const headers = {
+  constructor(body: unknown, { headers, ...init }: ResponseInit = {}) {
+    super(JSON.stringify(body), {
+      ...init,
       headers: {
+        ...headers,
         'content-type': 'application/json;charset=UTF-8',
       },
-    };
-    super(JSON.stringify(body), { ...init, ...headers });
+    })
   }
 }

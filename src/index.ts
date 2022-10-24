@@ -1,9 +1,21 @@
-import r from '@/routes'
+import { Router } from 'itty-router'
+import { errorHandler } from './utils/error-handler'
+import { createCors } from 'itty-cors'
 
-async function fetch(request: Request, env: Bindings) {
-  return r.route(request, env)
+const { corsify } = createCors()
+
+const router = Router()
+
+router.all('*', () => new Response('Not found', { status: 404 }))
+
+const worker: ExportedHandler<Bindings> = {
+  async fetch(request, env, ctx) {
+    try {
+      return await router.handle(request, env, ctx)
+    } catch (err) {
+      return errorHandler(err as HTTPError)
+    }
+  },
 }
-
-const worker: ExportedHandler<Bindings> = { fetch }
 
 export default worker
