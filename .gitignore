@@ -1,3 +1,13 @@
 node_modules
 dist
 .mf
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+.DS_Store
