@@ -1,8 +1,5 @@
 import { Router } from 'itty-router'
 import { errorHandler } from './utils/error-handler'
-import { createCors } from 'itty-cors'
-
-const { corsify } = createCors()
 
 const router = Router()
 
