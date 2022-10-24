@@ -3,6 +3,8 @@
     "dbaeumer.vscode-eslint",
     "bodil.prettier-toml",
     "bungcip.better-toml",
-    "Vue.volar"
+    "vue.volar",
+    "formulahendry.auto-close-tag",
+    "EditorConfig.EditorConfig"
   ]
 }
