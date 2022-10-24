@@ -1,1 +1,1 @@
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/api-pxflux-xyz)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/~/github.com/minakov/api-pxflux-xyz)
