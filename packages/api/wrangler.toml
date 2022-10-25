@@ -2,6 +2,7 @@ name = "api-pxflux-xyz"
 main = "dist/index.mjs"
 compatibility_date = "2022-05-28"
 compatibility_flags = []
+send_metrics = true
 
 [build]
 command = "node scripts/build.js"
