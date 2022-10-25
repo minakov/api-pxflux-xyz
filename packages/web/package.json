@@ -7,7 +7,7 @@
     "dev": "vite --host=0.0.0.0 ",
     "build": "vite build",
     "preview": "vite preview",
-    "publish": "wrangler pages publish dist --project-name=pxflux-xyz"
+    "publish": "vite build && wrangler pages publish dist --project-name=pxflux-xyz"
   },
   "dependencies": {
     "@magic-ext/connect": "^3.0.0",
