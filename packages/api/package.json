@@ -9,7 +9,7 @@
     "dev": "miniflare --live-reload --debug --modules dist/index.mjs --env ../../.env",
     "dev:remote": "wrangler dev",
     "types:check": "tsc && tsc -p test/tsconfig.json",
-    "deploy": "wrangler publish"
+    "publish": "wrangler publish"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.11.0",
