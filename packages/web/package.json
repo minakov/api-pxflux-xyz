@@ -9,10 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@magic-ext/connect": "^3.0.0",
+    "@magic-ext/oauth": "^4.0.0",
+    "color": "^4.2.3",
+    "magic-sdk": "^10.0.0",
+    "mersenne-twister": "^1.1.0",
     "vue": "^3.2.41",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "web3": "^1.8.0"
   },
   "devDependencies": {
+    "@magic-sdk/types": "^9.0.0",
+    "@types/color": "^3.0.3",
+    "@types/mersenne-twister": "^1.1.2",
     "@vitejs/plugin-vue": "^3.1.2",
     "vite": "^3.1.8",
     "vite-plugin-pages": "^0.27.1",
