@@ -7,7 +7,8 @@
     "dev": "vite --host=0.0.0.0 ",
     "build": "vite build --ssr src/_worker.js",
     "preview": "vite preview",
-    "publish": "vite build && wrangler pages publish dist --project-name=pxflux-xyz"
+    "prepublish": "npm run build",
+    "publish": "wrangler pages publish dist --project-name=pxflux-xyz"
   },
   "dependencies": {
     "@magic-ext/connect": "^3.0.0",
