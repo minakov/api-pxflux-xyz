@@ -5,7 +5,11 @@
     "workspaces": [
         "packages/*"
     ],
+    "scripts": {
+        "clean": "rm -rf node_modules package-lock.json packages/*/{node_modules,package-lock.json,dist}",
+        "publish": "npm run publish --workspaces --if-present"
+    },
     "engines": {
-        "node": ">=16"
+        "node": "^16"
     }
 }
