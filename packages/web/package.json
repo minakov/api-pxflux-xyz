@@ -6,7 +6,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "prepublish": "npm run build",
-    "publish": "wrangler pages publish .output/public --project-name=individuallist-xyz --commit-dirty=true",
+    "publish": "wrangler pages publish .output/public --project-name=pxflux-xyz --commit-dirty=true",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
