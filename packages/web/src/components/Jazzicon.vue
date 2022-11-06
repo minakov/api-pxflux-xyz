@@ -1,142 +1,138 @@
 <!-- Credits: vue3-jazzicon (0.1.2) https://github.com/samuveth/vue3-jazzicon -->
-<template>
-  <div ref="jazzicon" />
-</template>
-
 <script>
-import MersenneTwister from "mersenne-twister";
-import Color from "color";
+import MersenneTwister from 'mersenne-twister'
+import Color from 'color'
 
 export default {
-  name: "Jazzicon",
+  name: 'Jazzicon',
   props: {
     seed: {
       type: Number,
-      default: Math.round(Math.random() * 10000000),
+      default: Math.round(Math.random() * 10000000)
     },
     diameter: {
       type: Number,
-      default: 100,
+      default: 100
     },
     address: {
       type: String,
-      default: null,
+      default: null
     },
     shapeCount: {
       type: Number,
-      default: 4,
+      default: 4
     },
     colors: {
       type: Array,
       default: () => [
-        "#01888C", // teal
-        "#FC7500", // bright orange
-        "#034F5D", // dark teal
-        "#F73F01", // orangered
-        "#FC1960", // magenta
-        "#C7144C", // raspberry
-        "#F3C100", // goldenrod
-        "#1598F2", // lightning blue
-        "#2465E1", // sail blue
-        "#F19E02", // gold
-      ],
-    },
+        '#01888C', // teal
+        '#FC7500', // bright orange
+        '#034F5D', // dark teal
+        '#F73F01', // orangered
+        '#FC1960', // magenta
+        '#C7144C', // raspberry
+        '#F3C100', // goldenrod
+        '#1598F2', // lightning blue
+        '#2465E1', // sail blue
+        '#F19E02' // gold
+      ]
+    }
   },
   data() {
     return {
       generator: null,
-      svgns: "http://www.w3.org/2000/svg",
-    };
+      svgns: 'http://www.w3.org/2000/svg'
+    }
   },
   watch: {
     seed: {
       handler() {
-        this.icon();
-      },
+        this.icon()
+      }
     },
     address: {
       handler() {
-        this.icon();
-      },
+        this.icon()
+      }
     },
     diameter: {
       handler() {
-        this.icon();
-      },
-    },
+        this.icon()
+      }
+    }
   },
   mounted() {
-    this.icon();
+    this.icon()
   },
   methods: {
     addressToNumber(address) {
-      return parseInt(address.slice(2, 10), 16);
+      return parseInt(address.slice(2, 10), 16)
     },
     async icon() {
       const seed = this.address
         ? this.addressToNumber(this.address)
-        : this.seed;
-      this.$refs.jazzicon.innerHTML = "";
-      const el = await this.generateIdenticon(this.diameter, seed);
-      await this.$refs.jazzicon.append(el);
+        : this.seed
+      this.$refs.jazzicon.innerHTML = ''
+      const el = await this.generateIdenticon(this.diameter, seed)
+      await this.$refs.jazzicon.append(el)
     },
     newPaper(diameter, color) {
-      const container = document.createElement("div");
-      container.style.borderRadius = `${diameter / 2}px`;
-      container.style.overflow = "hidden";
-      container.style.padding = "0px";
-      container.style.margin = "0px";
-      container.style.width = "" + diameter + "px";
-      container.style.height = "" + diameter + "px";
-      container.style.display = "inline-block";
-      container.style.background = color;
+      const container = document.createElement('div')
+      container.style.borderRadius = `${diameter / 2}px`
+      container.style.overflow = 'hidden'
+      container.style.padding = '0px'
+      container.style.margin = '0px'
+      container.style.width = '' + diameter + 'px'
+      container.style.height = '' + diameter + 'px'
+      container.style.display = 'inline-block'
+      container.style.background = color
       return {
-        container: container,
-      };
+        container
+      }
     },
     generateIdenticon(diameter, seed) {
-      this.generator = new MersenneTwister(seed);
+      this.generator = new MersenneTwister(seed)
       const remainingColors = this.hueShift(
         this.colors.slice(),
         this.generator
-      );
-      const elements = this.newPaper(diameter, this.genColor(remainingColors));
-      const container = elements.container;
-      const svg = document.createElementNS(this.svgns, "svg");
-      svg.setAttributeNS(null, "x", "0");
-      svg.setAttributeNS(null, "y", "0");
-      svg.setAttributeNS(null, "width", diameter);
-      svg.setAttributeNS(null, "height", diameter);
-      container.appendChild(svg);
+      )
+      const elements = this.newPaper(diameter, this.genColor(remainingColors))
+      const container = elements.container
+      const svg = document.createElementNS(this.svgns, 'svg')
+      svg.setAttributeNS(null, 'x', '0')
+      svg.setAttributeNS(null, 'y', '0')
+      svg.setAttributeNS(null, 'width', diameter)
+      svg.setAttributeNS(null, 'height', diameter)
+      container.appendChild(svg)
       for (let i = 0; i < this.shapeCount - 1; i++) {
-        this.genShape(remainingColors, diameter, i, this.shapeCount - 1, svg);
+        this.genShape(remainingColors, diameter, i, this.shapeCount - 1, svg)
       }
-      return container;
+      return container
     },
     genShape(remainingColors, diameter, i, total, svg) {
-      const center = diameter / 2;
-      const shape = document.createElementNS(this.svgns, "rect");
-      shape.setAttributeNS(null, "x", "0");
-      shape.setAttributeNS(null, "y", "0");
-      shape.setAttributeNS(null, "width", diameter);
-      shape.setAttributeNS(null, "height", diameter);
-      const firstRot = this.generator.random();
-      const angle = Math.PI * 2 * firstRot;
+      const center = diameter / 2
+      const shape = document.createElementNS(this.svgns, 'rect')
+      shape.setAttributeNS(null, 'x', '0')
+      shape.setAttributeNS(null, 'y', '0')
+      shape.setAttributeNS(null, 'width', diameter)
+      shape.setAttributeNS(null, 'height', diameter)
+      const firstRot = this.generator.random()
+      const angle = Math.PI * 2 * firstRot
       const velocity =
-        (diameter / total) * this.generator.random() + (i * diameter) / total;
-      const tx = Math.cos(angle) * velocity;
-      const ty = Math.sin(angle) * velocity;
-      const translate = "translate(" + tx + " " + ty + ")";
+        (diameter / total) * this.generator.random() + (i * diameter) / total
+      const tx = Math.cos(angle) * velocity
+      const ty = Math.sin(angle) * velocity
+      const translate = 'translate(' + tx + ' ' + ty + ')'
       // Third random is a shape rotation on top of all of that.
-      const secondRot = this.generator.random();
-      const rot = firstRot * 360 + secondRot * 180;
+      const secondRot = this.generator.random()
+      const rot = firstRot * 360 + secondRot * 180
       const rotate =
-        "rotate(" + rot.toFixed(1) + " " + center + " " + center + ")";
-      const transform = translate + " " + rotate;
-      shape.setAttributeNS(null, "transform", transform);
-      const fill = this.genColor(remainingColors);
-      shape.setAttributeNS(null, "fill", fill);
-      svg.appendChild(shape);
+        'rotate(' + rot.toFixed(1) + ' ' + center + ' ' + center + ')'
+      const transform = translate + ' ' + rotate
+      shape.setAttributeNS(null, 'transform', transform)
+      const fill = this.genColor(remainingColors)
+      shape.setAttributeNS(null, 'fill', fill)
+      svg.appendChild(shape)
     },
     genColor(colors) {
       /* eslint-disable */
@@ -157,3 +153,7 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div ref="jazzicon" />
+</template>

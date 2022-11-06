@@ -1,28 +1,33 @@
 <script>
-import Spinner from "./Spinner.vue";
-import AddressButton from "./AddressButton.vue";
-import Jazzicon from "./Jazzicon.vue";
+import Spinner from './Spinner.vue'
+import AddressButton from './AddressButton.vue'
+import Jazzicon from './Jazzicon.vue'
 
 export default {
-  name: "ConnectWalletButton",
+  name: 'ConnectWalletButton',
+  components: [
+    Spinner, AddressButton, Jazzicon
+  ],
   props: {
     txnCount: {
       type: Number,
-      default: 0,
+      default: 0
     },
     address: {
       type: String,
-      required: true,
+      required: true
     },
     dark: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
-    connected: () => address.value.length > 0 && address.value.startsWith("0x"),
-  },
-};
+    connected () {
+      return this.address.length > 0 && this.address.startsWith('0x')
+    }
+  }
+}
 </script>
 
 <template>
@@ -33,21 +38,11 @@ export default {
         <span style="margin-top: 1px">{{ txnCount }} pending</span>
       </div>
     </transition>
-    <button
-      v-if="!connected"
-      @click="emit('login')"
-      class="v-btn v-connect-btn"
-      :class="dark ? 'v-connect-btn-dark' : 'v-connect-btn-light'"
-    >
+    <button v-if="!connected" class="v-btn v-connect-btn" :class="dark ? 'v-connect-btn-dark' : 'v-connect-btn-light'"
+      @click="emit('login')">
       Connect Wallet
     </button>
-    <AddressButton
-      v-else
-      @click="emit('showWallet')"
-      :address="address"
-      :dark="dark"
-      :title="address"
-    >
+    <AddressButton v-else :address="address" :dark="dark" :title="address" @click="emit('showWallet')">
       <Jazzicon :address="address" :diameter="15" style="margin-top: 3px" />
     </AddressButton>
   </div>

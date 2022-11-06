@@ -1,7 +1,7 @@
 <template>
   <div class="loadingio-spinner-rolling-9f4hja5xffr">
     <div class="ldio-gpklibk3god">
-      <div></div>
+      <div />
     </div>
   </div>
 </template>

@@ -1,21 +1,38 @@
-<script lang="ts" setup>
-defineProps<{ address: string | undefined; dark: boolean; }>();
+<script>
+export default {
+  name: 'AddressButton',
+  props: {
+    address: {
+      type: String,
+      required: true
+    },
+    dark: {
+      type: Boolean,
+      default: false
+    },
+    onClick: {
+      type: Function,
+      default: undefined
+    }
+  },
+  computed: {
+    value() {
+      return this.address.substring(0, 6) + '...' + this.address.substring(this.address.length - 4)
+    },
+    clazz() {
+      return [
+        this.onClick ? 'v-address-btn-clickable' : null,
+        this.dark ? 'v-address-btn-dark' : 'v-address-btn-light'
+      ]
+    }
+  }
+}
 </script>
 
 <template>
-  <button class="v-btn v-address-btn" :title="address" :class="[
-    $attrs.onClick ? 'v-address-btn-clickable' : null,
-    dark ? 'v-address-btn-dark' : 'v-address-btn-light',
-  ]">
-    <div class="v-address-box" v-if="address">
-      <slot></slot>
-      <b>
-        {{
-    address.substring(0, 6) +
-    "..." +
-    address.substring(address.length - 4)
-        }}
-      </b>
+  <button class="v-btn v-address-btn" :title="address" :class="clazz">
+    <div v-if="address" class="v-address-box">
+      <b>{{ value }}</b>
     </div>
     <span v-else>Connected</span>
   </button>

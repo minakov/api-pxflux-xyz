@@ -11,7 +11,7 @@ import ConnectWalletButton from '~/components/ConnectWalletButton.vue'
 export default {
   name: 'DefaultLayout',
   components: {
-    ConnectWalletButton,
-  },
+    ConnectWalletButton
+  }
 }
 </script>

@@ -1,0 +1,9 @@
+{
+  "_hash": "zTbAmRP2bF",
+  "project": {
+    "rootDir": "/workspaces/api-pxflux-xyz/packages/web"
+  },
+  "versions": {
+    "nuxt": "3.0.0-rc.12"
+  }
+}
