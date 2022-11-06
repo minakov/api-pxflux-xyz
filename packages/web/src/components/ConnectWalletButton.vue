@@ -23,7 +23,7 @@ export default {
     }
   },
   computed: {
-    connected () {
+    connected() {
       return this.address.length > 0 && this.address.startsWith('0x')
     }
   }

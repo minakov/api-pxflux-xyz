@@ -5,6 +5,7 @@
     "bungcip.better-toml",
     "vue.volar",
     "formulahendry.auto-close-tag",
-    "EditorConfig.EditorConfig"
+    "editorconfig.editorconfig",
+    "stylelint.vscode-stylelint"
   ]
 }
