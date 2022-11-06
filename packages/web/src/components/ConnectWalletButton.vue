@@ -1,47 +1,28 @@
-<script setup>
-import Spinner from './Spinner.vue'
-import AddressButton from './AddressButton.vue'
-import Jazzicon from './Jazzicon.vue'
-import { ref, computed } from 'vue'
-import { Magic } from 'magic-sdk'
-import { ConnectExtension } from '@magic-ext/connect'
-import Web3 from 'web3'
+<script>
+import Spinner from "./Spinner.vue";
+import AddressButton from "./AddressButton.vue";
+import Jazzicon from "./Jazzicon.vue";
 
-const magic = new Magic(import.meta.env.VITE_MAGIC_API_KEY, {
-  network: 'goerli',
-  locale: 'en_US',
-  extensions: [new ConnectExtension()],
-})
-const web3 = new Web3(magic.rpcProvider)
-
-defineProps({
-  dark: {
-    type: Boolean,
-    default: false,
+export default {
+  name: "ConnectWalletButton",
+  props: {
+    txnCount: {
+      type: Number,
+      default: 0,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    dark: {
+      type: Boolean,
+      default: false,
+    },
   },
-})
-
-const address = ref('')
-const txnCount = ref(0)
-
-const connected = computed(() => address.value.length > 0 && address.value.startsWith('0x'))
-
-async function login() {
-  web3.eth
-    .getAccounts()
-    .then((accounts) => {
-      address.value = accounts?.[0]
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-async function showWallet() {
-  magic.connect.showWallet().catch((e) => {
-    console.log(e)
-  })
-}
+  computed: {
+    connected: () => address.value.length > 0 && address.value.startsWith("0x"),
+  },
+};
 </script>
 
 <template>
@@ -54,13 +35,19 @@ async function showWallet() {
     </transition>
     <button
       v-if="!connected"
-      @click="login"
+      @click="emit('login')"
       class="v-btn v-connect-btn"
       :class="dark ? 'v-connect-btn-dark' : 'v-connect-btn-light'"
     >
       Connect Wallet
     </button>
-    <AddressButton v-else @click="showWallet" :address="address" :dark="dark" :title="address">
+    <AddressButton
+      v-else
+      @click="emit('showWallet')"
+      :address="address"
+      :dark="dark"
+      :title="address"
+    >
       <Jazzicon :address="address" :diameter="15" style="margin-top: 3px" />
     </AddressButton>
   </div>

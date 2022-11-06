@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ConnectWalletButton from '../components/ConnectWalletButton.vue'
+import ConnectWalletButton from '~/components/ConnectWalletButton.vue'
 
 export default {
   name: 'DefaultLayout',
