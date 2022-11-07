@@ -1,4 +1,5 @@
 {
+  "name": "web",
   "private": true,
   "scripts": {
     "build": "NITRO_PRESET=cloudflare_pages nuxt build",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "color": "^4.2.3",
-    "mersenne-twister": "^1.1.0"
+    "mersenne-twister": "^1.1.0",
+    "unzipit": "^1.4.0"
   }
 }

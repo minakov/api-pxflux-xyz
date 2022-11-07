@@ -6,7 +6,7 @@
         "packages/*"
     ],
     "scripts": {
-        "clean": "rm -rf node_modules package-lock.json packages/*/{node_modules,package-lock.json,dist}",
+        "clean": "rm -rf node_modules package-lock.json packages/*/{node_modules,package-lock.json,dist,.nuxt}",
         "publish": "npm run publish --workspaces --if-present"
     },
     "engines": {
