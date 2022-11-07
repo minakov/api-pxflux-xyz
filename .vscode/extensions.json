@@ -6,6 +6,7 @@
     "vue.volar",
     "formulahendry.auto-close-tag",
     "editorconfig.editorconfig",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "formulahendry.auto-rename-tag"
   ]
 }

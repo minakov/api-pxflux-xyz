@@ -1,17 +1,17 @@
 <template>
   <main>
-    <ConnectWalletButton address="" />
+    <!-- <ConnectWalletButton address="" /> -->
     <router-view />
   </main>
 </template>
 
 <script>
-import ConnectWalletButton from '~/components/ConnectWalletButton.vue'
+// import ConnectWalletButton from '~/components/ConnectWalletButton.vue'
 
 export default {
   name: 'DefaultLayout',
   components: {
-    ConnectWalletButton
+    // ConnectWalletButton
   }
 }
 </script>

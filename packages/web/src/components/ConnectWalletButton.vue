@@ -5,9 +5,9 @@ import Jazzicon from './Jazzicon.vue'
 
 export default {
   name: 'ConnectWalletButton',
-  components: [
+  components: {
     Spinner, AddressButton, Jazzicon
-  ],
+  },
   props: {
     txnCount: {
       type: Number,
