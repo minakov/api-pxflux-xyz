@@ -1,23 +1,29 @@
 <script>
 import FileList from '~/components/Preview/FileList.vue'
+import SandboxPreview from '~/components/Preview/SandboxPreview.vue'
 
 export default {
   name: 'IndexPage',
   components: {
-    FileList
+    FileList,
+    SandboxPreview
   },
 
   data() {
     return {
-      files: []
+      files: [],
+      file: null
     }
   },
 
   methods: {
     onFiles(e) {
-      this.files = Array.from(e.target.files)
-      console.log('onFiles', this.files)
+      const files = Array.from(e.target.files)
       e.target.value = ''
+      if (files.length === 1) {
+        this.file = files[0]
+      }
+      this.files = files
     }
   }
 }
@@ -27,5 +33,6 @@ export default {
   <div>
     <input type="file" accept="application/zip, application/x-zip-compressed" @change="onFiles">
     <FileList :files="files" />
+    <SandboxPreview :file="file" />
   </div>
 </template>
