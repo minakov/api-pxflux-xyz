@@ -21,7 +21,7 @@ self.addEventListener('fetch', (event) => {
         // headers, but set its body to the file blob.
 
         const record = await fetch(cache[id][path].url)
-        return new Response(await record.body)
+        return new Response(record.body)
       }())
     }
   }
