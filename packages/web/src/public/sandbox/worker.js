@@ -28,6 +28,7 @@ self.addEventListener('fetch', (event) => {
 })
 
 self.addEventListener('message', async (event) => {
+  console.log(event)
   // save the sandbox url to parse requests easily
   if (event?.data?.type === 'REGISTER_REFERRER') {
     referrers[event.data.data.id] = event.data.data.referrer
