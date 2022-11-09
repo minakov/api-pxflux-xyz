@@ -1,0 +1,9 @@
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+/sandbox/worker.js
+  service-worker-allowed: /
+
+/sandbox/preview.html
+  Content-Security-Policy: ''
+  Cross-Origin-Embedder-Policy: require-corp
