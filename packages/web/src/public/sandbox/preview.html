@@ -4,14 +4,17 @@
 <body>
   <script>
     const ID = new URLSearchParams(window.location.search).get('id')
+    console.log('preview', id)
 
     // register service worker
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
+        console.log('preview', 'load')
         navigator.serviceWorker.register("./worker.js", {
           scope: "/sandbox"
         })
           .then(reg => {
+            console.log('preview', reg)
             // register event for service worker's response
             navigator.serviceWorker.addEventListener("message", event => {
               if (event && event.data && event.data.type === "INDEX_HTML_CONTENTS") {
