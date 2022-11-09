@@ -9,6 +9,7 @@ async function fetchUrl(url, file) {
 }
 
 self.addEventListener('fetch', (event) => {
+  console.log('fetch', event)
   // get an ID from the request referrer url
   const url = new URL(event.request.referrer)
   const id = url.searchParams.get('id')
