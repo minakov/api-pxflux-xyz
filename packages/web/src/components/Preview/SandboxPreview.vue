@@ -1,5 +1,6 @@
 <script>
 import { unzipFile } from './lib/files'
+import { toSandboxFiles } from './lib/sandbox'
 
 export default {
   name: 'SandboxPreview',
@@ -37,7 +38,7 @@ export default {
           type: 'REGISTER_URLS',
           data: {
             id,
-            record: files
+            record: toSandboxFiles(files)
           }
         })
 

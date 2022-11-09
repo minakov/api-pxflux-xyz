@@ -1,6 +1,6 @@
-export type SandboxFiles = Record<string, { blob?: Blob, url: string }>
+export type SandboxFiles = Record<string, { blob?: Blob; url: string }>
 
-export function processZipSandbox (files: Record<string, Blob>): SandboxFiles {
+export function toSandboxFiles(files: Record<string, Blob>): SandboxFiles {
   // go through the files to create object URLS
   const record: SandboxFiles = {}
   for (const name in files) {
@@ -10,6 +10,9 @@ export function processZipSandbox (files: Record<string, Blob>): SandboxFiles {
     }
     record[name] = {
       url: URL.createObjectURL(files[name])
+    }
+    if (name === 'index.html') {
+      record[name].blob = files[name]
     }
   }
   return record
